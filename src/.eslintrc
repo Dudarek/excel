@@ -9,6 +9,10 @@
   "rules": {
     "linebreak-style": ["off", "windows"],
     "indent": ["error", 4],
-    "arrow-parens": "off"
+    "arrow-parens": "off",
+    "require-jsdoc": "off",
+    "no-extra-semi": "off",
+    "eol-last": "off",
+    "operator-linebreak": "off"
   }
 }
