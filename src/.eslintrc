@@ -13,6 +13,7 @@
     "require-jsdoc": "off",
     "no-extra-semi": "off",
     "eol-last": "off",
-    "operator-linebreak": "off"
+    "operator-linebreak": "off",
+    "max-len": ["error", { "code": 120 }]
   }
 }
