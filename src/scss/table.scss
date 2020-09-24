@@ -59,9 +59,9 @@
     color: #444;
 
 
-    & .selected {
+    &.selected {
       border:none;
-      outline: 2px solid blue;
+      box-shadow: inset 0 0 0 1px blue;
     }
   }
 

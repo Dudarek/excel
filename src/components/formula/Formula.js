@@ -1,25 +1,44 @@
 import {ExcelComponent} from '@/core/ExcelComponent';
-import tFormula from '@/assets/tFormula';
+import {$} from '@/core/dom';
 
 export class Formula extends ExcelComponent {
     static className = 'excel__formula';
 
-    constructor($root) {
+    constructor($root, options) {
         super($root, {
             name: 'Formula',
-            listeners: ['input', 'mouseover'],
+            listeners: ['input', 'keydown'],
+            ...options,
         });
     }
 
+    init() {
+        super.init();
+
+        this.$formula = this.$root.find('#formula-input');
+
+        this.$on('table:select', $cell => this.$formula.text($cell.text()));
+
+        this.$on('table:input', $cell => this.$formula.text($cell.text()));
+    }
+
     toHTML() {
-        return tFormula;
+        return `
+            <div class="info">fx</div>
+            <div class="input" id="formula-input" contenteditable spellcheck="false">123</div>
+        `;
     };
+
+    onKeydown(event) {
+        const keys = ['Enter', 'Tab'];
+
+        if (keys.includes(event.key)) {
+            event.preventDefault();
+            this.$emit('formula:done');
+        }
+    }
 
     onInput(event) {
-        console.log('input formula', event);
+        this.emitter.emit('formula:input', $(event.target).text());
     };
-
-    onMouseover() {
-        console.log('mouseover');
-    }
 };
